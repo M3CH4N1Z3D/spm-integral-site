@@ -1,41 +1,8 @@
-import Hero from "./components/Hero"
-import Link from "next/link"
-import { Code, Smartphone, Cloud, Palette, Database, Users } from "lucide-react"
+import Hero from "@/components/Hero";
+import Link from "next/link";
+import { services } from "@/lib/services";
 
 export default function Home() {
-  const services = [
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: "Desarrollo Web",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: "Apps Móviles",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      icon: <Cloud className="w-8 h-8" />,
-      title: "Cloud Services",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      icon: <Palette className="w-8 h-8" />,
-      title: "UX/UI Design",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      icon: <Database className="w-8 h-8" />,
-      title: "Base de Datos",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Consultoría",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ]
-
   return (
     <div className="pt-16">
       <Hero />
@@ -48,8 +15,8 @@ export default function Home() {
               Nuestros <span className="text-yellow-400">Servicios</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
 
@@ -60,7 +27,9 @@ export default function Home() {
                 className="bg-black border border-gray-800 rounded-lg p-6 hover:border-yellow-400 transition-all duration-300 transform hover:scale-105"
               >
                 <div className="text-yellow-400 mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {service.title}
+                </h3>
                 <p className="text-gray-400">{service.description}</p>
               </div>
             ))}
@@ -80,10 +49,12 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-yellow-400 to-yellow-500">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">¿Listo para Transformar tu Negocio?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            ¿Listo para Transformar tu Negocio?
+          </h2>
           <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Contacta con nosotros y descubre cómo podemos
-            ayudarte.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Contacta
+            con nosotros y descubre cómo podemos ayudarte.
           </p>
           <Link
             href="/contact"
@@ -94,5 +65,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }

@@ -1,10 +1,11 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Play } from "lucide-react"
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Play } from "lucide-react";
+import DecryptedText from "./ui/DecryptedText";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative mt-[5vh] min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -21,16 +22,33 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white">SERVICIOS</span>
-            <br />
-            <span className="text-yellow-400">DIGITALES</span>
-            <br />
-            <span className="text-white">INTEGRALES</span>
+            <DecryptedText
+              text="Strategic Portfolio Management"
+              speed={200}
+              maxIterations={20}
+              characters="ABCD1234!?"
+              className="revealed"
+              parentClassName="all-letters"
+              encryptedClassName="encrypted"
+              animateOn="view"
+              revealDirection="center"
+            />
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Transformamos ideas en soluciones digitales
-            innovadoras que impulsan tu negocio hacia el futuro.
+            <DecryptedText
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Transformamos ideas en soluciones digitales innovadoras que impulsan
+            tu negocio hacia el futuro."
+              speed={200}
+              maxIterations={20}
+              characters="ABCD1234!?"
+              className="revealed"
+              parentClassName="all-letters"
+              encryptedClassName="encrypted"
+              animateOn="view"
+              revealDirection="center"
+            />
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -60,5 +78,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
