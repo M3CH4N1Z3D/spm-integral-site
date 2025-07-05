@@ -10,13 +10,6 @@ import GooeyNav from "./ui/GooeyNav";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navigation = [
-    { name: "Inicio", href: "/" },
-    { name: "Servicios", href: "/services" },
-    { name: "Acerca de", href: "/about" },
-    { name: "Clientes", href: "/clients" },
-    { name: "Contacto", href: "/contact" },
-  ];
   const items = [
     { label: "Inicio", href: "/" },
     { label: "Servicios", href: "/services" },
@@ -34,11 +27,11 @@ export default function Header() {
             className="flex flex-row items-center text-2xl font-bold text-[#a7aab5]"
           >
             <Image
-              src="/SPM_INTEGRAL.svg"
+              src="/SPM_INTEGRAL.png"
               alt="Logo"
               width={100}
               height={100}
-              className="drop-shadow-[0px_0px_10px_rgba(200,200,255,1)]"
+              className="drop-shadow-[0px_0px_10px_rgba(200,200,255,1)] m-2"
             />
             SPM
             <RotatingText
@@ -81,14 +74,14 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-800">
-            {navigation.map((item) => (
+            {items.map((item) => (
               <Link
-                key={item.name}
+                key={item.label}
                 href={item.href}
                 className="block py-2 text-gray-300 hover:text-yellow-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.name}
+                {item.label}
               </Link>
             ))}
           </div>
