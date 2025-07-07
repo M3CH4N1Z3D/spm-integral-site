@@ -90,7 +90,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         particle.style.setProperty("--end-y", `${p.end[1]}px`);
         particle.style.setProperty("--time", `${p.time}ms`);
         particle.style.setProperty("--scale", `${p.scale}`);
-        particle.style.setProperty("--color", `var(--color-${p.color}, white)`);
+        particle.style.setProperty("--color", "#a693e5");
         particle.style.setProperty("--rotate", `${p.rotate}deg`);
         point.classList.add("point");
         particle.appendChild(point);
@@ -191,16 +191,21 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             z-index: 1;
           }
           .effect.text {
-            color: white;
+            color: #a693e5;
             transition: color 0.3s ease;
           }
           .effect.text.active {
-            color: black;
+            color: #2d3559;
           }
           .effect.filter {
-            filter: blur(7px) contrast(100) blur(0);
-            mix-blend-mode: lighten;
+            background: #a693e5;
+            opacity: 0.4;
+            border-radius: 9999px;
+            filter: blur(20px);
+            mix-blend-mode: normal;
           }
+
+
           .effect.filter::before {
             content: "";
             position: absolute;
@@ -212,7 +217,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             content: "";
             position: absolute;
             inset: 0;
-            background: white;
+            background: #a693e5;
             transform: scale(0);
             opacity: 0;
             z-index: -1;
@@ -244,10 +249,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             animation: particle calc(var(--time)) ease 1 -350ms;
           }
           .point {
-            background: var(--color);
-            opacity: 1;
-            animation: point calc(var(--time)) ease 1 -350ms;
-          }
+  background: #a693e5;
+  opacity: 1;
+  animation: point calc(var(--time)) ease 1 -350ms;
+  filter: drop-shadow(0 0 6px #a693e5);
+}
+
           @keyframes particle {
             0% {
               transform: rotate(0deg) translate(calc(var(--start-x)), calc(var(--start-y)));
@@ -295,7 +302,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             }
           }
           li.active {
-            color: black;
+            color: #a693e5;
             text-shadow: none;
           }
           li.active::after {
@@ -307,7 +314,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             position: absolute;
             inset: 0;
             border-radius: 8px;
-            background: white;
+            background: #a693e5;
             opacity: 0;
             transform: scale(0);
             transition: all 0.3s ease;
@@ -324,14 +331,14 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             ref={navRef}
             className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
             style={{
-              color: "white",
+              color: "#a693e5",
               textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
             }}
           >
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
+                className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[#a693e5] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-[#bccceb] ${
                   activeIndex === index ? "active" : ""
                 }`}
                 onClick={(e) => handleClick(e, index)}

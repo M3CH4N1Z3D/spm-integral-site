@@ -19,24 +19,24 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full bg-[rgba(100,141,179,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
+    <header className="fixed top-0 w-full bg-[rgba(45,53,59,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className="flex flex-row items-center text-2xl font-bold text-[#a7aab5]"
+            className="flex flex-row items-center text-2xl font-bold text-[#bccceb]"
           >
             <Image
               src="/SPM_INTEGRAL.png"
               alt="Logo"
               width={100}
               height={100}
-              className="drop-shadow-[0px_0px_10px_rgba(200,200,255,1)] m-2"
+              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-2"
             />
             SPM
             <RotatingText
               texts={["INTEGRAL", "CREA", "DISEÑA", "DESARROLLA", "GESTIONA"]}
-              mainClassName="px-2 sm:px-2 md:px-3 text-[#5eabd6] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+              mainClassName="px-2 sm:px-2 md:px-3 text-[#a693e5] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
               staggerFrom={"last"}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}

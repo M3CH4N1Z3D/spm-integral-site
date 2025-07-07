@@ -27,15 +27,14 @@ export default function Hero() {
               delay={150}
               animateBy="words"
               direction="top"
-              firstLetterClassName="text-[#5eabd6]"
+              firstLetterClassName="text-[#a693e5]"
+              className="text-[#d8d6f2]"
             />
           </h1>
 
-          <span className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
+          <span className="text-xl md:text-2xl text-[#bccceb] mb-8 max-w-2xl">
             <BlurText
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Transformamos ideas en soluciones digitales innovadoras que impulsan
-            tu negocio hacia el futuro."
+              text="Impulsamos tu visión con soluciones digitales estratégicas. En SPM INTEGRAL convertimos ideas en resultados reales."
               delay={10}
               animateBy="words"
               direction="bottom"
@@ -46,7 +45,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/services"
-              className="inline-flex items-center px-8 py-4 bg-[#5eabd6] text-white font-bold rounded-lg hover:bg-[#000957] transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-8 py-4 bg-[#2d3559] text-[#bccceb] font-bold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               Ver Servicios
               <ArrowRight className="ml-2" size={20} />
@@ -54,7 +53,7 @@ export default function Hero() {
 
             <Link
               href="/contact"
-              className="inline-flex bg-transparent items-center px-8 py-4 border-2 border-[#5eabd6] text-[#5eabd6] font-bold rounded-lg hover:bg-[#000957] hover:text-white transition-all duration-300"
+              className="inline-flex bg-transparent items-center px-8 py-4 border-2 border-[#bccceb] text-[#bccceb] font-bold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <Play className="mr-2" size={20} />
               Contactar Ahora
