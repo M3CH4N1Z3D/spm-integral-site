@@ -2,13 +2,14 @@
 import SpotlightCard from "@/components/ui/SpotLightCard"
 import { Target, Eye } from "lucide-react"
 import ProfileCard from "@/components/ui/ProfileCard"
-import { values, objectives, history, mision, vision, team } from "@/lib/about"
+import { useAboutData } from "@/lib/about"
 import ShinyText from "@/components/ui/ShinyText"
 import StarBorder from "@/components/ui/StarBorder"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function About() {
   const { t } = useLanguage()
+  const { values, objectives, history, mision, vision, team } = useAboutData()
 
   return (
     <div className="pt-20 sm:pt-24 pb-8 sm:pb-16 bg-gradient-to-r from-[#2d3559] to-[#393b49]">
@@ -35,7 +36,7 @@ export default function About() {
                 {t("about.mission")}
               </h2>
             </div>
-            <p className="text-[#bccceb] text-sm sm:text-base lg:text-lg leading-relaxed text-justify">{mision}</p>
+            <p className="text-[#bccceb] text-sm sm:text-base lg:text-lg leading-relaxed text-justify">{mision[0]}</p>
           </SpotlightCard>
 
           {/* Vision */}
@@ -46,7 +47,7 @@ export default function About() {
                 {t("about.vision")}
               </h2>
             </div>
-            <p className="text-[#bccceb] text-sm sm:text-base lg:text-lg leading-relaxed text-justify">{vision}</p>
+            <p className="text-[#bccceb] text-sm sm:text-base lg:text-lg leading-relaxed text-justify">{vision[0]}</p>
           </SpotlightCard>
         </div>
 
@@ -98,7 +99,7 @@ export default function About() {
               <span className="text-[#a693e5]">{t("about.team").split(" ")[1]}</span>
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-[#bccceb] max-w-3xl mx-auto mb-8 sm:mb-12 text-justify px-4">
-              {team}
+              {team[0]}
             </p>
             <div className="mb-8 sm:mb-12">
               <ProfileCard

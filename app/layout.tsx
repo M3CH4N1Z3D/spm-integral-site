@@ -4,14 +4,16 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/contexts/LanguageContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SPM INTEGRAL - Servicios Profesionales",
-  description: "Desarrollo web, aplicaciones móviles, consultoría tecnológica y servicios digitales integrales",
-  generator: "Fredy Rigueros",
+  title: "SPM INTEGRAL - Soluciones Digitales Estratégicas",
+  description:
+    "Transformamos ideas en soluciones digitales de alto impacto. Desarrollo web, apps móviles, cloud services y más.",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -20,13 +22,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body className={inter.className}>
-        <LanguageProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <LanguageProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

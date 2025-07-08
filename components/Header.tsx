@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X, Globe } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import RotatingText from "./ui/RotatingText"
 import GooeyNav from "./ui/GooeyNav"
@@ -54,14 +54,21 @@ export default function Header() {
           </Link>
 
           <div className="flex items-center space-x-4">
-            {/* Language Toggle Button */}
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1 px-2 sm:px-3 py-1 sm:py-2 bg-[#2d3559] text-[#bccceb] rounded-lg hover:bg-[#3d4569] transition-colors duration-200 text-sm sm:text-base"
-            >
-              <Globe size={16} className="sm:w-4 sm:h-4" />
-              <span className="font-medium">{language.toUpperCase()}</span>
-            </button>
+            {/* Desktop Language Switch */}
+            <div className="hidden lg:flex items-center">
+              <button
+                onClick={toggleLanguage}
+                className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
+                    language === "en" ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+                <span className="absolute left-1 text-xs font-medium text-[#bccceb]">ES</span>
+                <span className="absolute right-1 text-xs font-medium text-[#bccceb]">EN</span>
+              </button>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:block" style={{ height: "7vh", position: "relative" }}>
@@ -101,6 +108,23 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+
+              {/* Mobile Language Switch */}
+              <div className="flex items-center justify-between py-3 px-4 text-gray-300">
+                <span className="text-sm font-medium">Idioma / Language</span>
+                <button
+                  onClick={toggleLanguage}
+                  className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
+                      language === "en" ? "translate-x-6" : "translate-x-1"
+                    }`}
+                  />
+                  <span className="absolute left-1 text-xs font-medium text-[#bccceb]">ES</span>
+                  <span className="absolute right-1 text-xs font-medium text-[#bccceb]">EN</span>
+                </button>
+              </div>
             </div>
           </div>
         )}

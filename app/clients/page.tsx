@@ -1,5 +1,5 @@
 "use client"
-import { clientPageDescription, clients, testimonials } from "@/lib/clients"
+import { clients, useClientsData } from "@/lib/clients"
 import ImageCarousel from "@/components/ui/ImageCarousel"
 import SpotlightCard from "@/components/ui/SpotLightCard"
 import CountUp from "@/components/ui/CountUP"
@@ -9,6 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Clients() {
   const { t } = useLanguage()
+  const { testimonials, clientPageDescription } = useClientsData()
 
   return (
     <div className="pt-20 sm:pt-24 pb-8 sm:pb-16 bg-gradient-to-r from-[#2d3559] to-[#393b49]">

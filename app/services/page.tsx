@@ -2,12 +2,13 @@
 import ShinyText from "@/components/ui/ShinyText"
 import SpotlightCard from "@/components/ui/SpotLightCard"
 import StarBorder from "@/components/ui/StarBorder"
-import { services } from "@/lib/services"
+import { useServicesData } from "@/lib/services"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Services() {
   const { t } = useLanguage()
+  const { services } = useServicesData()
 
   return (
     <div className="pt-20 sm:pt-24 pb-8 sm:pb-16 bg-gradient-to-r from-[#2d3559] to-[#393b49]">
