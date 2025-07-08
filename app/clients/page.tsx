@@ -102,14 +102,14 @@ export default function Clients() {
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#bccceb] text-center mb-8 sm:mb-12">
             Empresas que Confían en Nosotros
           </h2>
-          <div className="w-full">
+          <div className="w-full max-w-6xl">
             <ImageCarousel
               items={clients}
               autoplay={true}
-              transformScale={1.05}
+              transformScale={1.2}
               autoplaySpeed={4000}
-              height="200px"
-              width="100%"
+              height="40vh"
+              width="50vw"
               background="transparent"
             />
           </div>
