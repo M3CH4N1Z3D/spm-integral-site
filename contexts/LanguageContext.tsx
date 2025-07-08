@@ -282,7 +282,7 @@ const translations = {
     // Clients Page
     "clients.title": "SPM Clients",
     "clients.numbers": "Our Numbers",
-    "clients.projectsCompleted": "Projects Completed",
+    "clients.projectsCompleted": "Completed Projects",
     "clients.satisfiedClients": "Satisfied Clients",
     "clients.yearsExperience": "Years of Experience",
     "clients.technicalSupport": "Technical Support",
@@ -304,7 +304,7 @@ const translations = {
     "testimonial.2.company": "Digital Marketing Pro",
     "testimonial.2.text":
       "The SPM INTEGRAL team not only met, but exceeded our expectations. Their commitment, creativity and attention to detail were key to the project's success.",
-    "testimonial.3.name": "Charles Rodríguez",
+    "testimonial.3.name": "Carlos Rodríguez",
     "testimonial.3.company": "StartUp Innovation",
     "testimonial.3.text":
       "Working with SPM INTEGRAL was an exceptional experience. Their professionalism, technical quality and adaptability gave us the confidence to scale quickly.",
@@ -328,19 +328,19 @@ const translations = {
     "contact.schedule": "Schedule",
     "contact.scheduleTime": "Mon - Fri: 24h",
     "contact.scheduleWeekend": "Sat: 24h Sun: 24h",
-    "contact.faq": "Frequently Asked Questions",
+    "contact.faq": "Frequently Asked",
     "contact.faq1Q": "How long does a project take?",
     "contact.faq1A":
       "Development time depends on the complexity and scope of the project. Some can be completed in a few weeks, while others require more extensive planning. At SPM INTEGRAL we provide you with a clear estimate from the beginning so you have full visibility of the process.",
     "contact.faq2Q": "Do you offer post-launch support?",
     "contact.faq2A":
-      "Yes, at SPM INTEGRAL we offer continuous support and maintenance once the project has been delivered. We ensure that your solution works correctly, stays updated and evolves with your needs.",
+      "Yes, at SPM INTEGRAL we offer continuous support and maintenance once the project has been delivered. We ensure that your solution works correctly, stays updated and evolves along with your needs.",
     "contact.faq3Q": "Do you work with international companies?",
     "contact.faq3A":
-      "Yes, at SPM INTEGRAL we collaborate with companies from different countries and sectors. Our experience in digital environments allows us to offer effective solutions regardless of geographic location, adapting to different cultures, languages and time zones.",
+      "Yes, at SPM INTEGRAL we collaborate with companies from different countries and sectors. Our experience in digital environments allows us to offer effective solutions regardless of geographical location, adapting to different cultures, languages and time zones.",
     "contact.speakDirectly": "Prefer to Speak Directly?",
     "contact.speakDirectlyDesc":
-      "Have questions or want to start your project in person? Schedule a free call with our team and discover how we can help you take your idea to the next level.",
+      "Do you have questions or want to start your project in person? Schedule a free call with our team and discover how we can help you take your idea to the next level.",
     "contact.callNow": "Call Now",
 
     // Footer
@@ -355,24 +355,25 @@ const translations = {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("es")
 
-  // Load language from localStorage on mount
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("spm-language") as Language
+    const savedLanguage = localStorage.getItem("language") as Language
     if (savedLanguage && (savedLanguage === "es" || savedLanguage === "en")) {
       setLanguage(savedLanguage)
     }
   }, [])
 
-  // Save language to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem("spm-language", language)
-  }, [language])
-
-  const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)["es"]] || key
+  const changeLanguage = (lang: Language) => {
+    setLanguage(lang)
+    localStorage.setItem("language", lang)
   }
 
-  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>
+  const t = (key: string): string => {
+    return translations[language][key] || key
+  }
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>{children}</LanguageContext.Provider>
+  )
 }
 
 export function useLanguage() {
