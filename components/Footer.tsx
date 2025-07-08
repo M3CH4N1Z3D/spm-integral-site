@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#2d3559] border-t border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {/* Company Info */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-2">
             <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 mb-4">
@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="text-center sm:text-left">
+          <div className="text-center sm:text-left w-fit">
             <h4 className="text-base sm:text-lg font-semibold text-white mb-4">
               <ShinyText
                 text={t("footer.contact")}
@@ -149,7 +149,7 @@ export default function Footer() {
                 <Mail size={16} className="mr-2 flex-shrink-0" />
                 <span className="break-all">
                   <ShinyText
-                    text="info@spmintegral.com"
+                    text="spm.integral.colombia@gmail.com"
                     disabled={false}
                     speed={3}
                   />
@@ -159,7 +159,7 @@ export default function Footer() {
                 <Phone size={16} className="mr-2 flex-shrink-0" />
                 <span>
                   <ShinyText
-                    text="+1 (555) 123-4567"
+                    text="+57 (350) 308-7606"
                     disabled={false}
                     speed={3}
                   />
