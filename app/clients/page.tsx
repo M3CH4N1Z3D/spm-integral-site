@@ -127,8 +127,8 @@ export default function Clients() {
         </div>
 
         {/* Client Logos */}
-        <div className="mb-12 sm:mb-16 lg:mb-20 flex flex-col items-center mx-auto">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#bccceb] text-center mb-8 sm:mb-12">
+        <div className="mb-20 flex flex-col items-center mx-auto">
+          <h2 className="text-3xl font-bold text-[#bccceb] text-center mb-12">
             {t("clients.trustedCompanies")}
           </h2>
           <ImageCarousel
@@ -141,7 +141,6 @@ export default function Clients() {
             background="transparent"
           />
         </div>
-
         {/* Testimonials */}
         <div className="mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center mb-8 sm:mb-12">

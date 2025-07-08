@@ -35,9 +35,9 @@ export default function Header() {
             <Image
               src="/SPM_INTEGRAL.png"
               alt="Logo"
-              width={100}
-              height={100}
-              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4"
+              width={90}
+              height={90}
+              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4 w-[15vw] lg:w-[5vw] h-auto"
             />
             <span className="hidden sm:inline">SPM</span>
             <div className="hidden sm:block">
