@@ -39,11 +39,13 @@ export default function Header() {
               height={90}
               className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4 w-[15vw] lg:w-[5vw] h-auto"
             />
-            <span className="hidden sm:inline">SPM</span>
-            <div className="hidden sm:block">
+            <span className="hidden sm:inline leading-none translate-y-[-2px]">
+              SPM
+            </span>
+            <div className="hidden sm:block items-center">
               <RotatingText
                 texts={["INTEGRAL", "CREA", "DISEÑA", "DESARROLLA", "GESTIONA"]}
-                mainClassName="px-1 sm:px-2 md:px-3 text-[#a693e5] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-sm sm:text-base lg:text-lg"
+                mainClassName="px-1 sm:px-2 md:px-3 text-[#a693e5] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-lg sm:text-xl lg:text-2xl font-bold leading-none"
                 staggerFrom={"last"}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}

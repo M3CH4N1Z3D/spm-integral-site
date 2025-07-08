@@ -1,24 +1,23 @@
-"use client"
+"use client";
 
-import { useParams, useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import SpotlightCard from "@/components/ui/SpotLightCard"
-import ShinyText from "@/components/ui/ShinyText"
-import StarBorder from "@/components/ui/StarBorder"
-import { useLanguage } from "@/contexts/LanguageContext"
-import { useServicesData } from "@/lib/services"
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import SpotlightCard from "@/components/ui/SpotLightCard";
+import StarBorder from "@/components/ui/StarBorder";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useServicesData } from "@/lib/services";
 
 export default function ServicePage() {
-  const params = useParams()
-  const router = useRouter()
-  const { t, language } = useLanguage()
-  const { services } = useServicesData()
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const params = useParams();
+  const router = useRouter();
+  const { t, language } = useLanguage();
+  const { services } = useServicesData();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const slug = params.slug as string
+  const slug = params.slug as string;
 
   // Find the service based on the slug
   const service = services.find(
@@ -30,8 +29,8 @@ export default function ServicePage() {
       s.title
         .toLowerCase()
         .replace(/\s+/g, "_")
-        .replace(/[^\w_]/g, "") === slug,
-  )
+        .replace(/[^\w_]/g, "") === slug
+  );
 
   // Service images - you'll need to add these to your public folder
   const serviceImages = [
@@ -39,94 +38,99 @@ export default function ServicePage() {
     `/services/${slug}/image2.jpg`,
     `/services/${slug}/image3.jpg`,
     `/services/${slug}/image4.jpg`,
-  ]
+  ];
 
   // Fallback images if service-specific images don't exist
   const fallbackImages = [
     "/placeholder.svg?height=400&width=600",
     "/placeholder.svg?height=400&width=600",
     "/placeholder.svg?height=400&width=600",
-  ]
+  ];
 
-  const images = serviceImages.length > 0 ? serviceImages : fallbackImages
+  const images = serviceImages.length > 0 ? serviceImages : fallbackImages;
 
   useEffect(() => {
     if (!service) {
-      router.push("/services")
+      router.push("/services");
     }
-  }, [service, router])
+  }, [service, router]);
 
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#2d3559] to-[#393b49]">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#bccceb] mb-4">Servicio no encontrado</h1>
+          <h1 className="text-2xl font-bold text-[#bccceb] mb-4">
+            Servicio no encontrado
+          </h1>
           <Link href="/services" className="text-[#a693e5] hover:underline">
             Volver a servicios
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length)
-  }
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const getServiceSlug = (title: string) => {
     return title
       .toLowerCase()
       .replace(/\s+/g, "-")
-      .replace(/[^\w-]/g, "")
-  }
+      .replace(/[^\w-]/g, "");
+  };
 
   const getDetailedDescription = (serviceTitle: string) => {
     const descriptions = {
       es: {
         "desarrollo-web":
-          "Creamos sitios web modernos, rápidos y escalables utilizando las últimas tecnologías. Nuestro enfoque se centra en la experiencia del usuario, el rendimiento óptimo y la funcionalidad robusta. Desde sitios corporativos hasta plataformas de e-commerce complejas, desarrollamos soluciones web que impulsan tu negocio hacia el éxito digital.",
-        "apps-moviles":
-          "Desarrollamos aplicaciones móviles nativas e híbridas que ofrecen experiencias excepcionales en iOS y Android. Nuestro equipo especializado utiliza tecnologías de vanguardia para crear apps intuitivas, rápidas y seguras que conectan con tus usuarios de manera efectiva.",
+          "Diseñamos y desarrollamos sitios web modernos, rápidos y escalables utilizando tecnologías de vanguardia como Next.js, React, Tailwind CSS y arquitecturas basadas en componentes. Nuestro enfoque combina diseño centrado en el usuario, rendimiento optimizado y código limpio para garantizar experiencias digitales fluidas y accesibles. Desde sitios corporativos institucionales hasta plataformas de comercio electrónico altamente personalizadas, creamos soluciones web robustas, seguras y preparadas para escalar junto a tu negocio. Cada proyecto es construido con buenas prácticas de desarrollo, integración continua y estándares web actualizados, asegurando calidad, mantenibilidad y resultados medibles.",
+        "apps-mviles":
+          "Desarrollamos aplicaciones móviles nativas e híbridas con experiencia fluida en Android, iOS y entornos multiplataforma. Utilizamos tecnologías como React Native, Flutter y herramientas nativas para crear apps rápidas, seguras y altamente intuitivas. Nuestro enfoque incluye diseño centrado en el usuario, integración con APIs, pruebas automatizadas y despliegue en tiendas oficiales, garantizando rendimiento, escalabilidad y una experiencia consistente en todos los dispositivos.",
         "cloud-services":
-          "Implementamos infraestructuras en la nube seguras, escalables y eficientes utilizando AWS, Google Cloud y Microsoft Azure. Optimizamos tus recursos, reducimos costos y garantizamos la disponibilidad de tus servicios con soluciones cloud personalizadas.",
+          "Implementamos infraestructuras en la nube seguras, escalables y eficientes utilizando proveedores como AWS, Google Cloud y Microsoft Azure. Diseñamos arquitecturas distribuidas, automatizamos despliegues con pipelines CI/CD y aplicamos políticas de seguridad avanzadas. Optimizamos el uso de recursos, reducimos costos operativos y garantizamos alta disponibilidad, resiliencia y rendimiento para tus servicios digitales.",
         "uxui-design":
-          "Diseñamos interfaces intuitivas y atractivas que priorizan la experiencia del usuario. Nuestro proceso incluye investigación de usuarios, prototipado, testing y creación de design systems coherentes que fortalecen tu marca y mejoran la usabilidad.",
+          "Diseñamos interfaces intuitivas y atractivas que priorizan la experiencia del usuario. Nuestro proceso incluye investigación de usuarios, arquitectura de información, wireframes, prototipado interactivo y pruebas de usabilidad. Creamos design systems consistentes, accesibles y escalables que refuerzan tu identidad visual, mejoran la navegación y garantizan una experiencia coherente en todos los dispositivos.",
         "base-de-datos":
-          "Diseñamos, implementamos y optimizamos bases de datos relacionales y NoSQL para garantizar el máximo rendimiento de tus aplicaciones. Nos especializamos en modelado de datos, optimización de consultas y estrategias de backup y recuperación.",
-        consultoria:
-          "Ofrecemos consultoría técnica especializada para ayudarte a tomar las mejores decisiones tecnológicas. Realizamos auditorías de código, definimos arquitecturas escalables y te acompañamos en procesos de migración y modernización tecnológica.",
+          "Diseñamos, implementamos y optimizamos bases de datos relacionales y NoSQL para garantizar el máximo rendimiento, disponibilidad y consistencia de tus aplicaciones. Nos especializamos en modelado de datos eficiente, normalización, optimización de consultas, replicación, particionamiento, escalabilidad horizontal y estrategias de respaldo y recuperación ante desastres. Adaptamos cada solución a las necesidades específicas de tu sistema, asegurando integridad y rendimiento sostenido.",
+        consultora:
+          "Ofrecemos consultoría técnica especializada para ayudarte a tomar decisiones estratégicas en tus proyectos digitales. Realizamos auditorías de código, análisis de arquitectura, evaluación de rendimiento y seguridad, y acompañamos procesos de migración, modernización tecnológica y adopción de nuevas herramientas. Nuestro enfoque se basa en las mejores prácticas de ingeniería, alineadas con tus objetivos de negocio y necesidades operativas.",
         "servicios-backend":
-          "Desarrollamos APIs robustas, microservicios y lógica de negocio eficiente que potencian tus aplicaciones. Nos especializamos en arquitecturas escalables, integración de sistemas y desarrollo de servicios backend de alto rendimiento.",
-        "diseno-grafico":
-          "Creamos identidades visuales sólidas y piezas gráficas impactantes que comunican efectivamente tu mensaje. Desde branding completo hasta materiales de marketing digital, desarrollamos soluciones creativas que fortalecen tu presencia visual.",
+          "Desarrollamos APIs robustas, microservicios y lógica de negocio eficiente que potencian tus aplicaciones. Utilizamos tecnologías como Node.js, Express, NestJS y bases de datos escalables para construir servicios backend seguros, mantenibles y de alto rendimiento. Nuestras soluciones están diseñadas para integrarse fácilmente con sistemas externos, escalar horizontalmente y adaptarse a arquitecturas modernas basadas en eventos o contenedores.",
+        "diseo-grfico":
+          "Creamos identidades visuales sólidas y piezas gráficas impactantes que comunican efectivamente tu mensaje. Desde branding completo, logotipos y manuales de marca hasta materiales de marketing digital, banners y contenido para redes sociales, desarrollamos soluciones creativas que fortalecen tu presencia visual. Nuestro enfoque combina estrategia, estética y coherencia para transmitir los valores de tu marca de forma memorable y profesional.",
       },
       en: {
         "web-development":
-          "We create modern, fast and scalable websites using the latest technologies. Our approach focuses on user experience, optimal performance and robust functionality. From corporate sites to complex e-commerce platforms, we develop web solutions that drive your business towards digital success.",
+          "We design and develop modern, fast, and scalable websites using cutting-edge technologies such as Next.js, React, Tailwind CSS, and component-based architectures. Our approach blends user-centered design, optimized performance, and clean code to deliver seamless and accessible digital experiences. From institutional corporate sites to highly customized e-commerce platforms, we build robust, secure web solutions that are ready to scale with your business. Every project is crafted with best development practices, continuous integration, and up-to-date web standards to ensure quality, maintainability, and measurable results.",
         "mobile-apps":
-          "We develop native and hybrid mobile applications that offer exceptional experiences on iOS and Android. Our specialized team uses cutting-edge technologies to create intuitive, fast and secure apps that connect effectively with your users.",
+          "We develop native and hybrid mobile applications that deliver a smooth experience across Android, iOS, and cross-platform environments. Using technologies like React Native, Flutter, and native SDKs, we build fast, secure, and highly intuitive apps. Our approach includes user-centered design, API integration, automated testing, and deployment to official stores—ensuring performance, scalability, and a consistent experience across all devices.",
         "cloud-services":
-          "We implement secure, scalable and efficient cloud infrastructures using AWS, Google Cloud and Microsoft Azure. We optimize your resources, reduce costs and guarantee the availability of your services with personalized cloud solutions.",
+          "We implement secure, scalable, and efficient cloud infrastructures using providers such as AWS, Google Cloud, and Microsoft Azure. We design distributed architectures, automate deployments with CI/CD pipelines, and apply advanced security policies. We optimize resource usage, reduce operational costs, and ensure high availability, resilience, and performance for your digital services.",
         "uxui-design":
-          "We design intuitive and attractive interfaces that prioritize user experience. Our process includes user research, prototyping, testing and creation of coherent design systems that strengthen your brand and improve usability.",
+          "We design intuitive and visually appealing interfaces that prioritize user experience. Our process includes user research, information architecture, wireframing, interactive prototyping, and usability testing. We create consistent, accessible, and scalable design systems that strengthen your visual identity, enhance navigation, and ensure a cohesive experience across all devices.",
         database:
-          "We design, implement and optimize relational and NoSQL databases to guarantee maximum performance of your applications. We specialize in data modeling, query optimization and backup and recovery strategies.",
+          "We design, implement, and optimize relational and NoSQL databases to ensure maximum performance, availability, and consistency for your applications. We specialize in efficient data modeling, normalization, query optimization, replication, partitioning, horizontal scalability, and disaster recovery strategies. Each solution is tailored to your system’s specific needs, ensuring data integrity and sustained performance.",
         consulting:
-          "We offer specialized technical consulting to help you make the best technological decisions. We perform code audits, define scalable architectures and accompany you in migration and technological modernization processes.",
+          "We offer specialized technical consulting to help you make strategic decisions in your digital projects. We conduct code audits, architecture analysis, performance and security evaluations, and support migration, technological modernization, and the adoption of new tools. Our approach is grounded in engineering best practices, aligned with your business goals and operational needs.",
         "backend-services":
-          "We develop robust APIs, microservices and efficient business logic that power your applications. We specialize in scalable architectures, system integration and high-performance backend service development.",
+          "We develop robust APIs, microservices, and efficient business logic that power your applications. Using technologies like Node.js, Express, NestJS, and scalable databases, we build secure, maintainable, and high-performance backend services. Our solutions are designed to integrate seamlessly with external systems, scale horizontally, and adapt to modern architectures based on events or containers.",
         "graphic-design":
-          "We create solid visual identities and impactful graphic pieces that effectively communicate your message. From complete branding to digital marketing materials, we develop creative solutions that strengthen your visual presence.",
+          "We create strong visual identities and impactful graphic assets that effectively communicate your message. From full branding, logos, and brand guidelines to digital marketing materials, banners, and social media content, we develop creative solutions that strengthen your visual presence. Our approach blends strategy, aesthetics, and consistency to convey your brand values in a memorable and professional way.",
       },
-    }
+    };
 
-    const serviceKey = getServiceSlug(serviceTitle)
-    return descriptions[language][serviceKey] || service.description
-  }
+    const serviceKey = getServiceSlug(serviceTitle);
+    return (
+      (descriptions[language] as Record<string, string>)[serviceKey] ||
+      service.description
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#2d3559] to-[#393b49]">
@@ -147,7 +151,9 @@ export default function ServicePage() {
           {/* Service Title */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
-              <span className="text-[#bccceb]">{service.title.split(" ")[0]}</span>{" "}
+              <span className="text-[#bccceb]">
+                {service.title.split(" ")[0]}
+              </span>{" "}
               {service.title
                 .split(" ")
                 .slice(1)
@@ -161,7 +167,10 @@ export default function ServicePage() {
 
           {/* Hero Image Carousel */}
           <div className="mb-12 sm:mb-16">
-            <SpotlightCard className="overflow-hidden" spotlightColor="rgba(45, 53, 89, 0.3)">
+            <SpotlightCard
+              className="overflow-hidden"
+              spotlightColor="rgba(45, 53, 89, 0.3)"
+            >
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px]">
                 <Image
                   src={images[currentImageIndex] || "/placeholder.svg"}
@@ -199,7 +208,9 @@ export default function ServicePage() {
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
-                          index === currentImageIndex ? "bg-[#a693e5]" : "bg-white/50 hover:bg-white/70"
+                          index === currentImageIndex
+                            ? "bg-[#a693e5]"
+                            : "bg-white/50 hover:bg-white/70"
                         }`}
                         aria-label={`Go to image ${index + 1}`}
                       />
@@ -214,15 +225,22 @@ export default function ServicePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 mb-12 sm:mb-16">
             {/* Main Description */}
             <div className="lg:col-span-2">
-              <SpotlightCard className="h-full" spotlightColor="rgba(45, 53, 89, 0.3)">
+              <SpotlightCard
+                className="h-full"
+                spotlightColor="rgba(45, 53, 89, 0.3)"
+              >
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#bccceb] mb-4 sm:mb-6">
-                  {language === "es" ? "Descripción del Servicio" : "Service Description"}
+                  {language === "es"
+                    ? "Descripción del Servicio"
+                    : "Service Description"}
                 </h2>
                 <p className="text-[#d8d6f2] text-base sm:text-lg leading-relaxed mb-6">
                   {getDetailedDescription(service.title)}
                 </p>
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-[#bccceb]">{t("services.technologies")}</h3>
+                  <h3 className="text-xl font-semibold text-[#bccceb]">
+                    {t("services.technologies")}
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {service.features.map((feature, index) => (
                       <span
@@ -239,27 +257,49 @@ export default function ServicePage() {
 
             {/* Service Icon & CTA */}
             <div className="space-y-6 sm:space-y-8">
-              <SpotlightCard className="text-center" spotlightColor="rgba(45, 53, 89, 0.3)">
+              <SpotlightCard
+                className="text-center"
+                spotlightColor="rgba(45, 53, 89, 0.3)"
+              >
                 <div className="text-[#a693e5] mb-4 flex justify-center">
-                  <div className="p-4 bg-[#2d3559] rounded-full">{service.icon}</div>
+                  <div className="p-4 bg-[#2d3559] rounded-full">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#bccceb] mb-4">{service.title}</h3>
-                <p className="text-[#d8d6f2] text-sm mb-6">{service.description}</p>
+                <h3 className="text-xl font-bold text-[#bccceb] mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-[#d8d6f2] text-sm mb-6">
+                  {service.description}
+                </p>
               </SpotlightCard>
 
               {/* CTA Card */}
-              <SpotlightCard className="text-center" spotlightColor="rgba(45, 53, 89, 0.3)">
+              <SpotlightCard
+                className="text-center"
+                spotlightColor="rgba(45, 53, 89, 0.3)"
+              >
                 <h3 className="text-lg font-bold text-[#bccceb] mb-4">
-                  {language === "es" ? "¿Interesado en este servicio?" : "Interested in this service?"}
+                  {language === "es"
+                    ? "¿Interesado en este servicio?"
+                    : "Interested in this service?"}
                 </h3>
                 <p className="text-[#d8d6f2] text-sm mb-6">
                   {language === "es"
                     ? "Contáctanos para obtener una cotización personalizada"
                     : "Contact us to get a personalized quote"}
                 </p>
-                <StarBorder as="button" className="w-full" color="#bccceb" speed="2s" thickness={0.1}>
+                <StarBorder
+                  as="button"
+                  className="w-full"
+                  color="#bccceb"
+                  speed="2s"
+                  thickness={0.1}
+                >
                   <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
+                    href={`/contact?service=${encodeURIComponent(
+                      service.title
+                    )}`}
                     className="inline-flex items-center justify-center w-full px-4 py-3 text-[#bccceb] font-bold rounded-lg text-sm sm:text-base"
                   >
                     {t("services.requestQuote")}
@@ -268,35 +308,8 @@ export default function ServicePage() {
               </SpotlightCard>
             </div>
           </div>
-
-          {/* Bottom CTA */}
-          <div className="text-center">
-            <div className="bg-gradient-to-r from-[#a693e5] to-yellow-500 rounded-lg p-6 sm:p-8">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-4">
-                <ShinyText
-                  text={language === "es" ? "¿Listo para comenzar?" : "Ready to get started?"}
-                  disabled={false}
-                  speed={3}
-                  className="text-[#2d3559]"
-                />
-              </h2>
-              <p className="text-[#2d3559] mb-6 text-sm sm:text-base max-w-2xl mx-auto font-medium">
-                {language === "es"
-                  ? "Transformemos tus ideas en soluciones digitales exitosas. Contáctanos hoy mismo."
-                  : "Let's transform your ideas into successful digital solutions. Contact us today."}
-              </p>
-              <StarBorder as="button" className="custom-class" color="#2d3559" speed="2s" thickness={0.1}>
-                <Link
-                  href={`/contact?service=${encodeURIComponent(service.title)}`}
-                  className="inline-flex items-center px-4 sm:px-6 py-3 sm:py-4 text-[#2d3559] font-bold rounded-lg text-sm sm:text-base"
-                >
-                  {language === "es" ? "Solicitar Cotización" : "Request Quote"}
-                </Link>
-              </StarBorder>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
