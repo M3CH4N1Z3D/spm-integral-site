@@ -2,7 +2,7 @@ import { url } from "inspector";
 
 export const clients = [
   {
-    label: "Coninker",
+    label: "Coninker otro",
     image: "/clients-logo/coninker.png",
     url: "https://www.coninker.com.co",
   },
