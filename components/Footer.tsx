@@ -1,10 +1,15 @@
+"use client"
+
 import Link from "next/link"
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react"
 import ShinyText from "./ui/ShinyText"
 import "@/components/ui/ShinyText.css"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="bg-[#2d3559] border-t border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -18,12 +23,7 @@ export default function Footer() {
               </h3>
             </div>
             <div className="text-gray-400 mb-4 max-w-md text-center sm:text-left text-sm sm:text-base">
-              <ShinyText
-                text="En SPM INTEGRAL, impulsamos la transformación digital de empresas mediante soluciones tecnológicas a medida. Nuestro compromiso es brindar innovación, eficiencia y resultados reales en cada proyecto."
-                disabled={false}
-                speed={3}
-                className="custom-class"
-              />
+              <ShinyText text={t("footer.description")} disabled={false} speed={3} className="custom-class" />
             </div>
             <div className="flex justify-center sm:justify-start space-x-4 mt-6 sm:mt-10">
               <Link href="#" className="text-gray-400 hover:text-yellow-400 transition-colors p-2">
@@ -47,7 +47,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-semibold text-white mb-4">
-              <ShinyText text="Enlaces Rápidos" disabled={false} speed={3} className="custom-class" />
+              <ShinyText text={t("footer.quickLinks")} disabled={false} speed={3} className="custom-class" />
             </h4>
             <ul className="space-y-2">
               <li>
@@ -55,7 +55,7 @@ export default function Footer() {
                   href="/services"
                   className="text-gray-400 hover:text-yellow-400 transition-colors text-sm sm:text-base"
                 >
-                  <ShinyText text="Servicios" disabled={false} speed={3} className="custom-class" />
+                  <ShinyText text={t("nav.services")} disabled={false} speed={3} className="custom-class" />
                 </Link>
               </li>
               <li>
@@ -63,7 +63,7 @@ export default function Footer() {
                   href="/about"
                   className="text-gray-400 hover:text-yellow-400 transition-colors text-sm sm:text-base"
                 >
-                  <ShinyText text="Nosotros" disabled={false} speed={3} className="custom-class" />
+                  <ShinyText text={t("nav.about")} disabled={false} speed={3} className="custom-class" />
                 </Link>
               </li>
               <li>
@@ -71,7 +71,7 @@ export default function Footer() {
                   href="/clients"
                   className="text-gray-400 hover:text-yellow-400 transition-colors text-sm sm:text-base"
                 >
-                  <ShinyText text="Clientes" disabled={false} speed={3} className="custom-class" />
+                  <ShinyText text={t("nav.clients")} disabled={false} speed={3} className="custom-class" />
                 </Link>
               </li>
               <li>
@@ -79,7 +79,7 @@ export default function Footer() {
                   href="/contact"
                   className="text-gray-400 hover:text-yellow-400 transition-colors text-sm sm:text-base"
                 >
-                  <ShinyText text="Contacto" disabled={false} speed={3} className="custom-class" />
+                  <ShinyText text={t("nav.contact")} disabled={false} speed={3} className="custom-class" />
                 </Link>
               </li>
             </ul>
@@ -88,7 +88,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-semibold text-white mb-4">
-              <ShinyText text="Contacto" disabled={false} speed={3} />
+              <ShinyText text={t("footer.contact")} disabled={false} speed={3} />
             </h4>
             <div className="space-y-2">
               <div className="flex items-center justify-center sm:justify-start text-gray-400 text-sm sm:text-base">
@@ -116,7 +116,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
           <span>
             <ShinyText disabled={false} speed={3}>
-              &copy; {new Date().getFullYear()} SPM INTEGRAL. Todos los derechos reservados.
+              &copy; {new Date().getFullYear()} SPM INTEGRAL. {t("footer.rights")}
             </ShinyText>
           </span>
         </div>

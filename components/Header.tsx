@@ -6,17 +6,23 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import RotatingText from "./ui/RotatingText";
 import GooeyNav from "./ui/GooeyNav";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const items = [
-    { label: "Inicio", href: "/" },
-    { label: "Servicios", href: "/services" },
-    { label: "Nosotros", href: "/about" },
-    { label: "Clientes", href: "/clients" },
-    { label: "Contacto", href: "/contact" },
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.services"), href: "/services" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.clients"), href: "/clients" },
+    { label: t("nav.contact"), href: "/contact" },
   ];
+
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "en" : "es");
+  };
 
   return (
     <header className="fixed top-0 w-full bg-[rgba(45,53,59,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
@@ -50,30 +56,52 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div
-            className="hidden lg:block"
-            style={{ height: "7vh", position: "relative" }}
-          >
-            <GooeyNav
-              items={items}
-              particleCount={15}
-              particleDistances={[90, 10]}
-              particleR={100}
-              initialActiveIndex={0}
-              animationTime={300}
-              timeVariance={300}
-              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-            />
-          </div>
+          <div className="flex items-center space-x-4">
+            {/* Desktop Language Switch */}
+            <div className="hidden lg:flex items-center">
+              <button
+                onClick={toggleLanguage}
+                className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
+                    language === "en" ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+                <span className="absolute left-1 text-xs font-medium text-[#bccceb]">
+                  ES
+                </span>
+                <span className="absolute right-1 text-xs font-medium text-[#bccceb]">
+                  EN
+                </span>
+              </button>
+            </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-gray-300 hover:text-yellow-400 p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Desktop Navigation */}
+            <div
+              className="hidden lg:block"
+              style={{ height: "7vh", position: "relative" }}
+            >
+              <GooeyNav
+                items={items}
+                particleCount={15}
+                particleDistances={[90, 10]}
+                particleR={100}
+                initialActiveIndex={0}
+                animationTime={300}
+                timeVariance={300}
+                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              />
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="lg:hidden text-gray-300 hover:text-yellow-400 p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -90,6 +118,27 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+
+              {/* Mobile Language Switch */}
+              <div className="flex items-center justify-between py-3 px-4 text-gray-300">
+                <span className="text-sm font-medium">Idioma / Language</span>
+                <button
+                  onClick={toggleLanguage}
+                  className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
+                      language === "en" ? "translate-x-6" : "translate-x-1"
+                    }`}
+                  />
+                  <span className="absolute left-1 text-xs font-medium text-[#bccceb]">
+                    ES
+                  </span>
+                  <span className="absolute right-1 text-xs font-medium text-[#bccceb]">
+                    EN
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         )}
