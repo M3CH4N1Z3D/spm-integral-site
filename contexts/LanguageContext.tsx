@@ -1,16 +1,24 @@
-"use client"
+"use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
-type Language = "es" | "en"
+type Language = "es" | "en";
 
 interface LanguageContextType {
-  language: Language
-  setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 const translations = {
   es: {
@@ -36,7 +44,8 @@ const translations = {
     "about.objectives": "Objetivos Empresariales",
     "about.team": "Nuestro Equipo",
     "about.knowMore": "¿Quieres Conocer Más Sobre Nosotros?",
-    "about.knowMoreDesc": "Contacta con nosotros y descubre cómo podemos trabajar juntos.",
+    "about.knowMoreDesc":
+      "Contacta con nosotros y descubre cómo podemos trabajar juntos.",
     "about.contactNow": "Contactar Ahora",
 
     // About Values
@@ -58,7 +67,8 @@ const translations = {
       "Desarrollar soluciones tecnológicas innovadoras que impulsen la eficiencia en la industria y la vida cotidiana.",
     "objectives.2":
       "Brindar servicios de software accesibles, ágiles y personalizados para empresas de todos los tamaños.",
-    "objectives.3": "Consolidar una cultura de mejora continua, calidad y compromiso con nuestros clientes.",
+    "objectives.3":
+      "Consolidar una cultura de mejora continua, calidad y compromiso con nuestros clientes.",
     "objectives.4":
       "Expandir nuestra presencia en Colombia y Latinoamérica como referentes en desarrollo web, móvil y sistemas de gestión.",
     "objectives.5":
@@ -85,17 +95,19 @@ const translations = {
     "services.technologies": "Tecnologías:",
     "services.customService": "¿Necesitas un Servicio Personalizado?",
     "services.customServiceDesc":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Contacta con nosotros para discutir tus necesidades específicas.",
+      "Contacta con nosotros para discutir tus necesidades específicas.",
     "services.requestQuote": "Solicitar Cotización",
 
     // Services Items
     "service.webDev.title": "Desarrollo Web",
-    "service.webDev.description": "Sitios rápidos, escalables y modernos con tecnologías de última generación.",
+    "service.webDev.description":
+      "Sitios rápidos, escalables y modernos con tecnologías de última generación.",
     "service.mobileApps.title": "Apps Móviles",
     "service.mobileApps.description":
       "Aplicaciones nativas e híbridas con experiencia fluida en Android, iOS y multiplataforma.",
     "service.cloudServices.title": "Cloud Services",
-    "service.cloudServices.description": "Infraestructura en la nube segura y escalable con AWS, Google Cloud y Azure.",
+    "service.cloudServices.description":
+      "Infraestructura en la nube segura y escalable con AWS, Google Cloud y Azure.",
     "service.uxui.title": "UX/UI Design",
     "service.uxui.description":
       "Interfaces intuitivas y atractivas centradas en la experiencia del usuario y la coherencia visual.",
@@ -123,7 +135,7 @@ const translations = {
     "clients.testimonials": "Lo que Dicen Nuestros Clientes",
     "clients.nextClient": "¿Quieres Ser Nuestro Próximo Cliente?",
     "clients.nextClientDesc":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Únete a las empresas que ya confían en SPM INTEGRAL para sus proyectos digitales.",
+      "Únete a las empresas que ya confían en SPM INTEGRAL para sus proyectos digitales.",
     "clients.startProject": "Comenzar un Proyecto",
     "clients.description":
       "nos enorgullece colaborar con empresas que comparten nuestra visión de innovación y excelencia. Desde emprendimientos emergentes hasta líderes consolidados en la industria, nuestros clientes confían en nosotros para desarrollar soluciones tecnológicas que impulsan su crecimiento y transformación digital.",
@@ -224,12 +236,16 @@ const translations = {
       "We transform ideas into unique digital experiences, combining design, functionality and strategic vision.",
 
     // About Objectives
-    "objectives.1": "Develop innovative technological solutions that drive efficiency in industry and daily life.",
-    "objectives.2": "Provide accessible, agile and personalized software services for companies of all sizes.",
-    "objectives.3": "Consolidate a culture of continuous improvement, quality and commitment to our clients.",
+    "objectives.1":
+      "Develop innovative technological solutions that drive efficiency in industry and daily life.",
+    "objectives.2":
+      "Provide accessible, agile and personalized software services for companies of all sizes.",
+    "objectives.3":
+      "Consolidate a culture of continuous improvement, quality and commitment to our clients.",
     "objectives.4":
       "Expand our presence in Colombia and Latin America as leaders in web, mobile and management systems development.",
-    "objectives.5": "Foster the professional growth of our team through constant training and collaborative work.",
+    "objectives.5":
+      "Foster the professional growth of our team through constant training and collaborative work.",
 
     // About History
     "history.1":
@@ -251,18 +267,19 @@ const translations = {
       "At SPM INTEGRAL, we transform ideas into high-impact digital solutions. Our approach combines design, technology and strategy to help you stand out in a competitive environment. Whether you need a solid web presence or a high-performance mobile app, we have the experience to make it happen.",
     "services.technologies": "Technologies:",
     "services.customService": "Need a Custom Service?",
-    "services.customServiceDesc":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Contact us to discuss your specific needs.",
+    "services.customServiceDesc": "Contact us to discuss your specific needs.",
     "services.requestQuote": "Request Quote",
 
     // Services Items
     "service.webDev.title": "Web Development",
-    "service.webDev.description": "Fast, scalable and modern sites with cutting-edge technologies.",
+    "service.webDev.description":
+      "Fast, scalable and modern sites with cutting-edge technologies.",
     "service.mobileApps.title": "Mobile Apps",
     "service.mobileApps.description":
       "Native and hybrid applications with smooth experience on Android, iOS and cross-platform.",
     "service.cloudServices.title": "Cloud Services",
-    "service.cloudServices.description": "Secure and scalable cloud infrastructure with AWS, Google Cloud and Azure.",
+    "service.cloudServices.description":
+      "Secure and scalable cloud infrastructure with AWS, Google Cloud and Azure.",
     "service.uxui.title": "UX/UI Design",
     "service.uxui.description":
       "Intuitive and attractive interfaces focused on user experience and visual consistency.",
@@ -290,7 +307,7 @@ const translations = {
     "clients.testimonials": "What Our Clients Say",
     "clients.nextClient": "Want to Be Our Next Client?",
     "clients.nextClientDesc":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Join the companies that already trust SPM INTEGRAL for their digital projects.",
+      "Join the companies that already trust SPM INTEGRAL for their digital projects.",
     "clients.startProject": "Start a Project",
     "clients.description":
       "we are proud to collaborate with companies that share our vision of innovation and excellence. From emerging startups to established industry leaders, our clients trust us to develop technological solutions that drive their growth and digital transformation.",
@@ -350,36 +367,40 @@ const translations = {
     "footer.contact": "Contact",
     "footer.rights": "All rights reserved.",
   },
-}
+};
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("es")
+  const [language, setLanguage] = useState<Language>("es");
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language
+    const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && (savedLanguage === "es" || savedLanguage === "en")) {
-      setLanguage(savedLanguage)
+      setLanguage(savedLanguage);
     }
-  }, [])
+  }, []);
 
   const changeLanguage = (lang: Language) => {
-    setLanguage(lang)
-    localStorage.setItem("language", lang)
-  }
+    setLanguage(lang);
+    localStorage.setItem("language", lang);
+  };
 
   const t = (key: string): string => {
-    return translations[language][key] || key
-  }
+    return translations[language][key] || key;
+  };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>{children}</LanguageContext.Provider>
-  )
+    <LanguageContext.Provider
+      value={{ language, setLanguage: changeLanguage, t }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
-  const context = useContext(LanguageContext)
+  const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider")
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
-  return context
+  return context;
 }

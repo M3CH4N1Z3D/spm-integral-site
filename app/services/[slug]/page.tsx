@@ -9,6 +9,7 @@ import SpotlightCard from "@/components/ui/SpotLightCard";
 import StarBorder from "@/components/ui/StarBorder";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useServicesData } from "@/lib/services";
+import CardSwap, { Card } from "@/components/ui/CardSwap";
 
 export default function ServicePage() {
   const params = useParams();
@@ -35,9 +36,9 @@ export default function ServicePage() {
   // Service images - you'll need to add these to your public folder
   const serviceImages = [
     `/services/${slug}/imagen1.png`,
-    `/services/${slug}/image2.jpg`,
-    `/services/${slug}/image3.jpg`,
-    `/services/${slug}/image4.jpg`,
+    `/services/${slug}/imagen2.png`,
+    `/services/${slug}/imagen3.png`,
+    `/services/${slug}/imagen4.png`,
   ];
 
   // Fallback images if service-specific images don't exist
@@ -69,14 +70,6 @@ export default function ServicePage() {
       </div>
     );
   }
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   const getServiceSlug = (title: string) => {
     return title
@@ -166,54 +159,32 @@ export default function ServicePage() {
           </div>
 
           {/* Hero Image Carousel */}
-          <div className="mb-12 sm:mb-16">
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] flex items-center justify-center bg-transparent rounded-lg border border-[#2d3559] shadow-inner overflow-hidden">
-              <Image
-                src={images[currentImageIndex] || "/placeholder.svg"}
-                alt={`${service.title} - Image ${currentImageIndex + 1}`}
-                width={800}
-                height={600}
-                className="object-contain max-h-full max-w-full rounded-md transition-transform duration-300 ease-in-out"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              />
-
-              {/* Navigation Buttons */}
-              {images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-200 z-10"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-200 z-10"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </button>
-                </>
-              )}
-
-              {/* Dots Indicator */}
-              {images.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
-                        index === currentImageIndex
-                          ? "bg-[#a693e5]"
-                          : "bg-white/50 hover:bg-white/70"
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              )}
+          <div className="flex flex-col items-center mb-12 sm:mb-16">
+            <div style={{ height: "350px", position: "relative" }}>
+              <CardSwap
+                cardDistance={500}
+                verticalDistance={0}
+                delay={3000}
+                pauseOnHover={false}
+                width={500}
+                height={400}
+                skewAmount={0}
+              >
+                {images.map((imgSrc, index) => (
+                  <Card key={index}>
+                    <div className="w-full h-full flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={imgSrc || "/placeholder.svg"}
+                        alt={`${service.title} - Imagen ${index + 1}`}
+                        width={800}
+                        height={600}
+                        className="object-contain w-full h-full rounded-md transition-transform duration-300 ease-in-out"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                      />
+                    </div>
+                  </Card>
+                ))}
+              </CardSwap>
             </div>
           </div>
 
