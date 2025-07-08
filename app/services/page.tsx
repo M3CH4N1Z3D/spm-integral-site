@@ -10,6 +10,13 @@ export default function Services() {
   const { t } = useLanguage()
   const { services } = useServicesData()
 
+  const getServiceSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "")
+  }
+
   return (
     <div className="pt-20 sm:pt-24 pb-8 sm:pb-16 bg-gradient-to-r from-[#2d3559] to-[#393b49]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +38,7 @@ export default function Services() {
               <div className="text-[#bccceb] mb-4 sm:mb-6 flex justify-center lg:justify-start">{service.icon}</div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#d8d6f2] mb-3 sm:mb-4 text-center lg:text-left">
                 <Link
-                  href={"#"}
+                  href={`/services/${getServiceSlug(service.title)}`}
                   className="relative hover:cursor-pointer transition-colors font-medium after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-[#bccceb] after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
                   {service.title}
@@ -41,7 +48,7 @@ export default function Services() {
                 {service.description}
               </p>
 
-              <div className="space-y-2">
+              <div className="space-y-2 mb-6">
                 <h4 className="text-base sm:text-lg font-semibold text-[#bccceb] mb-2 sm:mb-3 text-center lg:text-left">
                   {t("services.technologies")}
                 </h4>
@@ -55,6 +62,16 @@ export default function Services() {
                     </span>
                   ))}
                 </div>
+              </div>
+
+              {/* Service Link Button */}
+              <div className="text-center lg:text-left">
+                <Link
+                  href={`/services/${getServiceSlug(service.title)}`}
+                  className="inline-flex items-center px-4 py-2 bg-[#a693e5] hover:bg-[#8b7bc7] text-white font-medium rounded-lg transition-colors text-sm"
+                >
+                  {t("nav.services") === "Servicios" ? "Ver Detalles" : "View Details"}
+                </Link>
               </div>
             </SpotlightCard>
           ))}

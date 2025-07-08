@@ -1,148 +1,126 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Image from "next/image";
-import RotatingText from "./ui/RotatingText";
-import GooeyNav from "./ui/GooeyNav";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { Menu, X, Globe } from "lucide-react"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
 
-  const items = [
-    { label: t("nav.home"), href: "/" },
-    { label: t("nav.services"), href: "/services" },
-    { label: t("nav.about"), href: "/about" },
-    { label: t("nav.clients"), href: "/clients" },
-    { label: t("nav.contact"), href: "/contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const toggleLanguage = () => {
-    setLanguage(language === "es" ? "en" : "es");
-  };
+    setLanguage(language === "es" ? "en" : "es")
+  }
+
+  const navItems = [
+    { href: "/", label: t("nav.home") },
+    { href: "/services", label: t("nav.services") },
+    { href: "/about", label: t("nav.about") },
+    { href: "/clients", label: t("nav.clients") },
+    { href: "/contact", label: t("nav.contact") },
+  ]
 
   return (
-    <header className="fixed top-0 w-full bg-[rgba(45,53,59,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
-          <Link
-            href="/"
-            className="flex flex-row items-center text-lg sm:text-xl lg:text-2xl font-bold text-[#bccceb]"
-          >
-            <Image
-              src="/SPM_INTEGRAL.png"
-              alt="Logo"
-              width={90}
-              height={90}
-              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4 w-[15vw] lg:w-[5vw] h-auto"
-            />
-            <span className="hidden sm:inline">SPM</span>
-            <div className="hidden sm:block">
-              <RotatingText
-                texts={["INTEGRAL", "CREA", "DISEÑA", "DESARROLLA", "GESTIONA"]}
-                mainClassName="px-1 sm:px-2 md:px-3 text-[#a693e5] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-sm sm:text-base lg:text-lg"
-                staggerFrom={"last"}
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={3000}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-[#2d3559]/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+              <Image
+                src="/SPM_INTEGRAL.png"
+                alt="SPM INTEGRAL"
+                fill
+                className="object-contain"
+                sizes="(max-width: 640px) 32px, 40px"
               />
             </div>
+            <span className="text-lg sm:text-xl font-bold text-[#bccceb]">SPM INTEGRAL</span>
           </Link>
 
-          <div className="flex items-center space-x-4">
-            {/* Desktop Language Switch */}
-            <div className="hidden lg:flex items-center">
-              <button
-                onClick={toggleLanguage}
-                className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-[#bccceb] hover:text-[#a693e5] transition-colors duration-200 font-medium text-sm xl:text-base"
               >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
-                    language === "en" ? "translate-x-6" : "translate-x-1"
-                  }`}
-                />
-                <span className="absolute left-1 text-xs font-medium text-[#bccceb]">
-                  ES
-                </span>
-                <span className="absolute right-1 text-xs font-medium text-[#bccceb]">
-                  EN
-                </span>
-              </button>
-            </div>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-            {/* Desktop Navigation */}
-            <div
-              className="hidden lg:block"
-              style={{ height: "7vh", position: "relative" }}
-            >
-              <GooeyNav
-                items={items}
-                particleCount={15}
-                particleDistances={[90, 10]}
-                particleR={100}
-                initialActiveIndex={0}
-                animationTime={300}
-                timeVariance={300}
-                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-              />
-            </div>
-
-            {/* Mobile menu button */}
+          {/* Desktop Language Toggle */}
+          <div className="hidden lg:flex items-center">
             <button
-              className="lg:hidden text-gray-300 hover:text-yellow-400 p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleLanguage}
+              className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-[#a693e5]/10 hover:bg-[#a693e5]/20 transition-colors duration-200 border border-[#a693e5]/30"
+              aria-label="Toggle language"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <Globe className="w-4 h-4 text-[#a693e5]" />
+              <span className="text-[#a693e5] font-medium text-sm">{language.toUpperCase()}</span>
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-[#bccceb] hover:text-[#a693e5] transition-colors duration-200"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-800">
-            <div className="flex flex-col space-y-2">
-              {items.map((item) => (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-[#2d3559]/95 backdrop-blur-md border-t border-[#a693e5]/20">
+            <nav className="px-4 py-4 space-y-3">
+              {navItems.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.href}
                   href={item.href}
-                  className="block py-3 px-4 text-gray-300 hover:text-yellow-400 hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                  className="block py-2 text-[#bccceb] hover:text-[#a693e5] transition-colors duration-200 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
 
-              {/* Mobile Language Switch */}
-              <div className="flex items-center justify-between py-3 px-4 text-gray-300">
-                <span className="text-sm font-medium">Idioma / Language</span>
+              {/* Mobile Language Toggle */}
+              <div className="pt-3 border-t border-[#a693e5]/20">
                 <button
-                  onClick={toggleLanguage}
-                  className="relative inline-flex h-6 w-11 items-center rounded-full bg-[#2d3559] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a693e5] focus:ring-offset-2"
+                  onClick={() => {
+                    toggleLanguage()
+                    setIsMenuOpen(false)
+                  }}
+                  className="flex items-center space-x-2 py-2 text-[#a693e5] hover:text-[#bccceb] transition-colors duration-200"
                 >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-[#a693e5] transition-transform ${
-                      language === "en" ? "translate-x-6" : "translate-x-1"
-                    }`}
-                  />
-                  <span className="absolute left-1 text-xs font-medium text-[#bccceb]">
-                    ES
-                  </span>
-                  <span className="absolute right-1 text-xs font-medium text-[#bccceb]">
-                    EN
-                  </span>
+                  <Globe className="w-4 h-4" />
+                  <span className="font-medium">{language === "es" ? "Cambiar a English" : "Switch to Español"}</span>
                 </button>
               </div>
-            </div>
+            </nav>
           </div>
         )}
-      </nav>
+      </div>
     </header>
-  );
+  )
 }

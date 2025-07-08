@@ -2,7 +2,8 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from "lucide-react"
 import SpotlightCard from "@/components/ui/SpotLightCard"
 import ShinyText from "@/components/ui/ShinyText"
@@ -11,6 +12,9 @@ import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Contact() {
   const { t, language } = useLanguage()
+  const searchParams = useSearchParams()
+  const preselectedService = searchParams.get("service")
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +22,16 @@ export default function Contact() {
     service: "",
     message: "",
   })
+
+  // Set preselected service when component mounts or when searchParams change
+  useEffect(() => {
+    if (preselectedService) {
+      setFormData((prev) => ({
+        ...prev,
+        service: preselectedService,
+      }))
+    }
+  }, [preselectedService])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,21 +50,21 @@ export default function Contact() {
     language === "es"
       ? [
           "Desarrollo Web",
-          "Aplicaciones Móviles",
-          "Servicios Cloud",
+          "Apps Móviles",
+          "Cloud Services",
           "UX/UI Design",
           "Base de Datos",
-          "Consultoría IT",
+          "Consultoría",
           "Servicios Backend",
           "Diseño Gráfico",
         ]
       : [
           "Web Development",
-          "Mobile Applications",
+          "Mobile Apps",
           "Cloud Services",
           "UX/UI Design",
           "Database",
-          "IT Consulting",
+          "Consulting",
           "Backend Services",
           "Graphic Design",
         ]
@@ -74,6 +88,16 @@ export default function Contact() {
               {t("contact.sendMessage").split(" ").slice(0, -2).join(" ")}{" "}
               <span className="text-[#a693e5]">{t("contact.sendMessage").split(" ").slice(-1)[0]}</span>
             </h2>
+
+            {preselectedService && (
+              <div className="mb-4 p-3 bg-[#a693e5]/10 border border-[#a693e5]/30 rounded-lg">
+                <p className="text-[#a693e5] text-sm">
+                  {language === "es"
+                    ? `Servicio preseleccionado: ${preselectedService}`
+                    : `Preselected service: ${preselectedService}`}
+                </p>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
