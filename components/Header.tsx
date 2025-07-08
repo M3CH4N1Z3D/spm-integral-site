@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import Image from "next/image"
-import RotatingText from "./ui/RotatingText"
-import GooeyNav from "./ui/GooeyNav"
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import RotatingText from "./ui/RotatingText";
+import GooeyNav from "./ui/GooeyNav";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const items = [
     { label: "Inicio", href: "/" },
@@ -16,19 +16,22 @@ export default function Header() {
     { label: "Nosotros", href: "/about" },
     { label: "Clientes", href: "/clients" },
     { label: "Contacto", href: "/contact" },
-  ]
+  ];
 
   return (
     <header className="fixed top-0 w-full bg-[rgba(45,53,59,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          <Link href="/" className="flex flex-row items-center text-lg sm:text-xl lg:text-2xl font-bold text-[#bccceb]">
+          <Link
+            href="/"
+            className="flex flex-row items-center text-lg sm:text-xl lg:text-2xl font-bold text-[#bccceb]"
+          >
             <Image
               src="/SPM_INTEGRAL.png"
               alt="Logo"
-              width={60}
-              height={60}
-              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-1 sm:m-2 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+              width={100}
+              height={100}
+              className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4"
             />
             <span className="hidden sm:inline">SPM</span>
             <div className="hidden sm:block">
@@ -48,7 +51,10 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:block" style={{ height: "7vh", position: "relative" }}>
+          <div
+            className="hidden lg:block"
+            style={{ height: "7vh", position: "relative" }}
+          >
             <GooeyNav
               items={items}
               particleCount={15}
@@ -89,5 +95,5 @@ export default function Header() {
         )}
       </nav>
     </header>
-  )
+  );
 }
