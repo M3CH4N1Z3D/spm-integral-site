@@ -2,21 +2,27 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import Image from "next/image"
 import RotatingText from "./ui/RotatingText"
 import GooeyNav from "./ui/GooeyNav"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
 
   const items = [
-    { label: "Inicio", href: "/" },
-    { label: "Servicios", href: "/services" },
-    { label: "Nosotros", href: "/about" },
-    { label: "Clientes", href: "/clients" },
-    { label: "Contacto", href: "/contact" },
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.services"), href: "/services" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.clients"), href: "/clients" },
+    { label: t("nav.contact"), href: "/contact" },
   ]
+
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "en" : "es")
+  }
 
   return (
     <header className="fixed top-0 w-full bg-[rgba(45,53,59,0.3)] backdrop-blur-sm border-b border-gray-800 z-50">
@@ -47,27 +53,38 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:block" style={{ height: "7vh", position: "relative" }}>
-            <GooeyNav
-              items={items}
-              particleCount={15}
-              particleDistances={[90, 10]}
-              particleR={100}
-              initialActiveIndex={0}
-              animationTime={300}
-              timeVariance={300}
-              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-            />
-          </div>
+          <div className="flex items-center space-x-4">
+            {/* Language Toggle Button */}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center space-x-1 px-2 sm:px-3 py-1 sm:py-2 bg-[#2d3559] text-[#bccceb] rounded-lg hover:bg-[#3d4569] transition-colors duration-200 text-sm sm:text-base"
+            >
+              <Globe size={16} className="sm:w-4 sm:h-4" />
+              <span className="font-medium">{language.toUpperCase()}</span>
+            </button>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-gray-300 hover:text-yellow-400 p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:block" style={{ height: "7vh", position: "relative" }}>
+              <GooeyNav
+                items={items}
+                particleCount={15}
+                particleDistances={[90, 10]}
+                particleR={100}
+                initialActiveIndex={0}
+                animationTime={300}
+                timeVariance={300}
+                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              />
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="lg:hidden text-gray-300 hover:text-yellow-400 p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

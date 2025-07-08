@@ -1,79 +1,119 @@
 "use client"
-import Link from "next/link"
-import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
 
 interface CarouselItem {
-  image: string
-  label: string
-  url?: string
+  id: string
+  src: string
+  alt: string
+  title?: string
 }
 
 interface ImageCarouselProps {
   items: CarouselItem[]
   autoplay?: boolean
-  transformScale?: number
   autoplaySpeed?: number
-  height?: string // e.g. "60vh"
-  width?: string // e.g. "100vw"
-  background?: string // e.g. "#f0f0f0"
+  transformScale?: number
+  height?: string
+  width?: string
+  background?: string
 }
 
 export default function ImageCarousel({
   items,
-  autoplay = true,
-  transformScale = 1.1,
+  autoplay = false,
   autoplaySpeed = 3000,
-  height = "60vh",
-  width = "100vw",
-  background = "#ffffff",
+  transformScale = 1.1,
+  height = "300px",
+  width = "100%",
+  background = "white",
 }: ImageCarouselProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [paused, setPaused] = useState(false)
-  const scrollRef = useRef<number>(0)
-
-  const duplicatedItems = [...items, ...items]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    if (!autoplay) return
-    const interval = setInterval(() => {
-      if (!paused && containerRef.current) {
-        containerRef.current.scrollLeft += 1
-        scrollRef.current += 1
-        if (containerRef.current.scrollLeft >= containerRef.current.scrollWidth / 2) {
-          containerRef.current.scrollLeft = 0
-        }
+    if (autoplay && items.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
+      }, autoplaySpeed)
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
       }
-    }, autoplaySpeed / 100) // smooth scroll
-    return () => clearInterval(interval)
-  }, [autoplay, paused, autoplaySpeed])
+    }
+  }, [autoplay, autoplaySpeed, items.length])
+
+  const handleMouseEnter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (autoplay && items.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
+      }, autoplaySpeed)
+    }
+  }
 
   return (
     <div
-      className="overflow-hidden relative"
-      style={{ height, width, background }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative overflow-hidden rounded-lg"
+      style={{ height, width }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <div ref={containerRef} className="flex gap-6 px-8 py-8 overflow-x-auto scroll-smooth no-scrollbar">
-        {duplicatedItems.map((item, index) => (
+      <div
+        className="flex transition-transform duration-500 ease-in-out h-full"
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          width: `${items.length * 100}%`,
+        }}
+      >
+        {items.map((item, index) => (
           <div
-            key={index}
-            className="flex-shrink-0 flex flex-col items-center justify-between bg-[#bccceb] rounded-xl shadow-md p-4 transition-transform duration-300 ease-in-out hover:scale-[1.05] basis-full sm:basis-1/2 lg:basis-1/3"
-            style={{ "--scale": transformScale } as React.CSSProperties}
+            key={item.id}
+            className="flex-shrink-0 h-full flex items-center justify-center p-4"
+            style={{
+              width: `${100 / items.length}%`,
+              backgroundColor: background === "transparent" ? "transparent" : background,
+            }}
           >
-            <div className="w-full aspect-[4/3] flex items-center justify-center">
-              <Link href={item.url || "#"} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.label}
-                  className="object-contain max-h-full w-auto"
+            <div className="relative w-full h-full max-w-xs mx-auto">
+              <div
+                className="relative w-full h-full bg-[#bccceb] rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:brightness-110"
+                style={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src={item.src || "/placeholder.svg"}
+                  alt={item.alt}
+                  fill
+                  className="object-contain p-4"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-              </Link>
+              </div>
+              {item.title && (
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-center">
+                  <p className="text-sm font-medium">{item.title}</p>
+                </div>
+              )}
             </div>
-            <p className="mt-4 text-center text-gray-700 font-semibold text-lg">{item.label}</p>
           </div>
+        ))}
+      </div>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {items.map((_, index) => (
+          <button
+            key={index}
+            className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-white" : "bg-white/50"}`}
+            onClick={() => setCurrentIndex(index)}
+          />
         ))}
       </div>
     </div>
