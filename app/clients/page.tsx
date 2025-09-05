@@ -131,15 +131,23 @@ export default function Clients() {
           <h2 className="text-3xl font-bold text-[#bccceb] text-center mb-12">
             {t("clients.trustedCompanies")}
           </h2>
-          <ImageCarousel
-            items={clients}
-            autoplay={true}
-            transformScale={1.2}
-            autoplaySpeed={4000}
-            height="40vh"
-            width="50vw"
-            background="transparent"
-          />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+            {clients.map((client, index) => (
+              <a
+                key={index}
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center items-center p-4 bg-gray-800 rounded-lg transition-transform duration-300 hover:scale-105"
+              >
+                <img
+                  src={client.image}
+                  alt={client.label}
+                  className="max-h-16"
+                />
+              </a>
+            ))}
+          </div>
         </div>
         {/* Testimonials */}
         <div className="mb-12 sm:mb-16">

@@ -47,6 +47,12 @@ export function useClientsData() {
       text: t("testimonial.3.text"),
       image: "/placeholder.svg?height=80&width=80",
     },
+    {
+      name: t("testimonial.4.name"),
+      company: t("testimonial.4.company"),
+      text: t("testimonial.4.text"),
+      image: "/placeholder.svg?height=80&width=80",
+    },
   ]
 
   const clientPageDescription = t("clients.description")
