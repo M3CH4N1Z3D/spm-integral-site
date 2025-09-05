@@ -37,6 +37,16 @@ export function useAboutData() {
   const vision = [t("vision.text")]
   const team = [t("team.text")]
 
+  const teamMembers = [
+    {
+      name: "Fredy M. Rigueros",
+      title: "Mechanical Engineer / Full-Stack Developer",
+      bio: "Fredy is a passionate full-stack developer with a background in mechanical engineering. He specializes in creating robust and scalable web applications.",
+      avatarUrl: "/fredy.png",
+      handle: "javicodes",
+    },
+  ]
+
   return {
     values,
     objectives,
@@ -44,5 +54,6 @@ export function useAboutData() {
     mision,
     vision,
     team,
+    teamMembers,
   }
 }

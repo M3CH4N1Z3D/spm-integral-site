@@ -9,7 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function About() {
   const { t } = useLanguage()
-  const { values, objectives, history, mision, vision, team } = useAboutData()
+  const { values, objectives, history, mision, vision, team, teamMembers } = useAboutData()
 
   return (
     <div className="pt-20 sm:pt-24 pb-8 sm:pb-16 bg-gradient-to-r from-[#2d3559] to-[#393b49]">
@@ -101,20 +101,23 @@ export default function About() {
             <p className="text-base sm:text-lg lg:text-xl text-[#bccceb] max-w-3xl mx-auto mb-8 sm:mb-12 text-justify px-4">
               {team[0]}
             </p>
-            <div className="mb-8 sm:mb-12">
-              <ProfileCard
-                name="Fredy M. Rigueros"
-                title="Mechanical Engineer / Full-Stack Developer"
-                handle="javicodes"
-                status="Online"
-                contactText="Contact Me"
-                avatarUrl="/fredy.png"
-                showUserInfo={false}
-                enableTilt={true}
-                onContactClick={() => console.log("Contact clicked")}
-                showBehindGradient={false}
-                iconUrl="/icons/code-icon.svg"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <ProfileCard
+                  key={index}
+                  name={member.name}
+                  title={member.title}
+                  handle={member.handle}
+                  status="Online"
+                  contactText="Contact Me"
+                  avatarUrl={member.avatarUrl}
+                  showUserInfo={false}
+                  enableTilt={true}
+                  onContactClick={() => console.log("Contact clicked")}
+                  showBehindGradient={false}
+                  iconUrl="/icons/code-icon.svg"
+                />
+              ))}
             </div>
           </div>
 
