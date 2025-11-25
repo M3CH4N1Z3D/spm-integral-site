@@ -106,7 +106,7 @@ export default function ServicePage() {
         </div>
 
         {/* Section 1: Hero */}
-        <section className="text-center py-16">
+        <section className="text-center py-4 md:py-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             {t(`service.${key}.heroTitle`).split(' ').map((word, index) => (
               <span key={index}>
@@ -119,8 +119,8 @@ export default function ServicePage() {
         </section>
 
         {/* Image Carousel - Moved here as it's a key visual element */}
-        <section className="flex flex-col items-center mb-12 sm:mb-16">
-            <div style={{ height: "350px", position: "relative" }}>
+        <section className="flex flex-col items-center mb-2 sm:mb-4">
+            <div className="h-[250px] md:h-[400px]" style={{ position: "relative" }}>
               <CardSwap cardDistance={500} verticalDistance={0} delay={3000} pauseOnHover={false} width={500} height={400} skewAmount={0}>
                 {images.map((imgSrc, index) => (
                   <Card key={index}>
@@ -134,7 +134,7 @@ export default function ServicePage() {
         </section>
 
         {/* Section 2: "Lo que ofrecemos" */}
-        <section className="py-16">
+        <section className="py-4 md:py-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             <span className="text-[#a693e5]">{t(`service.${key}.solutionsTitle`).split(' ')[0]}</span>
             {' '}{t(`service.${key}.solutionsTitle`).split(' ').slice(1).join(' ')}
@@ -155,7 +155,7 @@ export default function ServicePage() {
         </section>
 
         {/* Section 3: "¿Por qué elegirnos?" */}
-        <section className="py-16">
+        <section className="py-4 md:py-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{t(`service.${key}.whyUsTitle`)}</h2>
           <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
@@ -168,7 +168,7 @@ export default function ServicePage() {
         </section>
 
         {/* Section 4: "Nuestra Metodología" */}
-        <section className="py-16">
+        <section className="py-4 md:py-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{t(`service.${key}.methodologyTitle`)}</h2>
           <div className="relative max-w-4xl mx-auto">
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-700 hidden md:block" />
@@ -190,7 +190,7 @@ export default function ServicePage() {
         </section>
 
         {/* Section 5: CTA Final */}
-        <section className="py-16">
+        <section className="py-4 md:py-8">
           <SpotlightCard className="text-center p-8 md:p-12" spotlightColor="rgba(166, 147, 229, 0.3)">
             <h2 className="text-3xl font-bold mb-4">{t(`service.${key}.ctaTitle`)}</h2>
             <p className="text-lg text-[#bccceb] max-w-2xl mx-auto mb-8">{t(`service.${key}.ctaParagraph`)}</p>
