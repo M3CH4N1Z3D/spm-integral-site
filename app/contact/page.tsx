@@ -218,8 +218,7 @@ export default function Contact() {
                   <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-[#a693e5] mr-3 sm:mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-base sm:text-lg font-semibold text-[#2d3559]">{t("contact.phone")}</h4>
-                    <p className="text-[#d8d6f2] text-sm sm:text-base">+57 (350) 308-7606</p>
-                    <p className="text-[#d8d6f2] text-sm sm:text-base">+57 (350) 308-7719</p>
+                    <p className="text-[#d8d6f2] text-sm sm:text-base">+57 (319) 506-7885</p>
                   </div>
                 </div>
 
@@ -227,8 +226,8 @@ export default function Contact() {
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-[#a693e5] mr-3 sm:mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-base sm:text-lg font-semibold text-[#2d3559]">{t("contact.location")}</h4>
-                    <p className="text-[#d8d6f2] text-sm sm:text-base">Cra 34a # 37 191</p>
-                    <p className="text-[#d8d6f2] text-sm sm:text-base">Soacha, Colombia</p>
+                    <p className="text-[#d8d6f2] text-sm sm:text-base">Cra 81b # 19b 85</p>
+                    <p className="text-[#d8d6f2] text-sm sm:text-base">Bogotá, Colombia</p>
                   </div>
                 </div>
 
@@ -237,7 +236,6 @@ export default function Contact() {
                   <div>
                     <h4 className="text-base sm:text-lg font-semibold text-[#2d3559]">{t("contact.schedule")}</h4>
                     <p className="text-[#d8d6f2] text-sm sm:text-base">{t("contact.scheduleTime")}</p>
-                    <p className="text-[#d8d6f2] text-sm sm:text-base">{t("contact.scheduleWeekend")}</p>
                   </div>
                 </div>
               </div>
@@ -282,7 +280,7 @@ export default function Contact() {
             </p>
             <StarBorder as="button" className="custom-class" color="#bccceb" speed="2s" thickness={0.1}>
               <a
-                href="https://wa.me/573503087606"
+                href="https://wa.me/573195067885"
                 className="inline-flex items-center px-3 sm:px-4 py-2 sm:py-3 text-[#bccceb] font-bold rounded-lg text-sm sm:text-base"
               >
                 <Phone className="mr-2" size={20} />

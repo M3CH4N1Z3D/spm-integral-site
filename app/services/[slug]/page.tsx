@@ -117,22 +117,6 @@ export default function ServicePage() {
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto text-[#bccceb]">{t(`service.${key}.heroParagraph`)}</p>
         </section>
-
-        {/* Image Carousel - Moved here as it's a key visual element */}
-        <section className="flex flex-col items-center mb-2 sm:mb-4">
-            <div className="h-[250px] md:h-[400px]" style={{ position: "relative" }}>
-              <CardSwap cardDistance={500} verticalDistance={0} delay={3000} pauseOnHover={false} width={500} height={400} skewAmount={0}>
-                {images.map((imgSrc, index) => (
-                  <Card key={index}>
-                    <div className="w-full h-full flex items-center justify-center overflow-hidden">
-                      <Image src={imgSrc || "/placeholder.svg"} alt={service ? `${service.title} - Imagen ${index + 1}` : `Placeholder Image ${index + 1}`} width={800} height={600} className="object-contain w-full h-full rounded-md" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw" />
-                    </div>
-                  </Card>
-                ))}
-              </CardSwap>
-            </div>
-        </section>
-
         {/* Section 2: "Lo que ofrecemos" */}
         <section className="py-4 md:py-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">

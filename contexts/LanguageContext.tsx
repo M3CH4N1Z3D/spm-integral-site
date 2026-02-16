@@ -362,19 +362,19 @@ const translations = {
 
     // Testimonials
     "testimonial.1.name": "Juan Pérez",
-    "testimonial.1.company": "Tech Solutions Inc.",
+    "testimonial.1.company": "Coninker",
     "testimonial.1.text":
       "Gracias a SPM INTEGRAL, logramos una transformación digital completa. Su enfoque estratégico y su dominio técnico marcaron una gran diferencia en nuestros procesos.",
     "testimonial.2.name": "María González",
-    "testimonial.2.company": "Digital Marketing Pro",
+    "testimonial.2.company": "Aceroscol",
     "testimonial.2.text":
       "El equipo de SPM INTEGRAL no solo cumplió, sino que superó nuestras expectativas. Su compromiso, creatividad y atención al detalle fueron clave para el éxito del proyecto.",
     "testimonial.3.name": "Carlos Rodríguez",
-    "testimonial.3.company": "StartUp Innovation",
+    "testimonial.3.company": "Ferrocortes",
     "testimonial.3.text":
       "Trabajar con SPM INTEGRAL fue una experiencia excepcional. Su profesionalismo, calidad técnica y capacidad de adaptación nos dieron la confianza para escalar rápidamente.",
     "testimonial.4.name": "Ana Martínez",
-    "testimonial.4.company": "InnovaCorp",
+    "testimonial.4.company": "Aeromaquinados",
     "testimonial.4.text":
       "El equipo de SPM INTEGRAL es increíblemente talentoso y dedicado. Nos ayudaron a lanzar nuestro producto en tiempo récord y con una calidad excepcional.",
 
@@ -395,7 +395,7 @@ const translations = {
     "contact.phone": "Teléfono",
     "contact.location": "Ubicación",
     "contact.schedule": "Horario",
-    "contact.scheduleTime": "Lun - Vie: 24h",
+    "contact.scheduleTime": "Estamos disponibles las 24 horas, los 7 dias de las semana",
     "contact.scheduleWeekend": "Sáb: 24h Dom: 24h",
     "contact.faq": "Preguntas Frecuentes",
     "contact.faq1Q": "¿Cuánto tiempo toma un proyecto?",
