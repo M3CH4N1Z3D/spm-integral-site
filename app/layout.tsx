@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://spmintegral.com",
   },
+  verification: {
+    google: "2AgS4pXsRFL75HvR6vqggoh5EyCf4Y1Zvhp0-8fcHis",
+  },
 };
 
 const jsonLd = {
