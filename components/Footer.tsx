@@ -18,8 +18,8 @@ export default function Footer() {
           <div className="col-span-1 sm:col-span-2 lg:col-span-2">
             <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 mb-4">
               <Image
-                src="/SPM_INTEGRAL.png"
-                alt="Logo"
+                src="/SPM_INTEGRAL.webp"
+                alt="Logo de SPM Integral"
                 width={40}
                 height={40}
                 className="sm:w-12 sm:h-12 lg:w-[5vw] lg:h-auto"
@@ -45,6 +45,7 @@ export default function Footer() {
               <Link
                 href="#"
                 className="text-gray-400 hover:text-yellow-400 transition-colors p-2"
+                aria-label="Perfil de LinkedIn de SPM Integral"
               >
                 <ShinyText disabled={false} speed={3}>
                   <Linkedin size={20} />
@@ -53,6 +54,7 @@ export default function Footer() {
               <Link
                 href="#"
                 className="text-gray-400 hover:text-yellow-400 transition-colors p-2"
+                aria-label="Perfil de Twitter de SPM Integral"
               >
                 <ShinyText disabled={false} speed={3}>
                   <Twitter size={20} />
@@ -61,6 +63,7 @@ export default function Footer() {
               <Link
                 href="#"
                 className="text-gray-400 hover:text-yellow-400 transition-colors p-2"
+                aria-label="Perfil de GitHub de SPM Integral"
               >
                 <ShinyText disabled={false} speed={3}>
                   <Github size={20} />

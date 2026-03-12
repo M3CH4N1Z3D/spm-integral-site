@@ -14,7 +14,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute top-0 inset-0 z-0">
         <Image
-          src="/heroBackground.png?height=1080&width=1920"
+          src="/heroBackground.webp?height=1080&width=1920"
           alt="Hero Background"
           fill
           className="object-cover opacity-30 max-h-full"
@@ -26,7 +26,10 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center lg:text-left">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h1 
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+            aria-label={t("hero.title")}
+          >
             <BlurText
               text={t("hero.title")}
               delay={150}
@@ -49,7 +52,7 @@ export default function Hero() {
 
             <Link
               href="/contact"
-              className="inline-flex bg-transparent items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#bccceb] text-[#bccceb] font-bold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+              className="inline-flex bg-black/30 backdrop-blur-sm items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#bccceb] text-[#bccceb] font-bold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
             >
               <ArrowRight className="mr-2" size={20} />
               {t("hero.contactNow")}

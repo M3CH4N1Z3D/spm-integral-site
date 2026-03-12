@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 export const clients = [
   {
     label: "Coninker",
-    image: "/clients-logo/coninker.png",
+    image: "/clients-logo/coninker.webp",
     url: "https://www.coninker.com.co",
   },
   {
@@ -20,7 +20,7 @@ export const clients = [
   },
   {
     label: "AeroMaquinados",
-    image: "/clients-logo/aeromaquinados.png",
+    image: "/clients-logo/aeromaquinados.webp",
     url: "https://aeromaquinados.com/",
   },
 ]

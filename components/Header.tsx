@@ -34,8 +34,8 @@ export default function Header() {
             className="flex flex-row items-center text-lg sm:text-xl lg:text-2xl font-bold text-[#bccceb]"
           >
             <Image
-              src="/SPM_INTEGRAL.png"
-              alt="Logo"
+              src="/SPM_INTEGRAL.webp"
+              alt="Logo de SPM Integral - Agencia de Desarrollo y Diseño"
               width={90}
               height={90}
               className="drop-shadow-[0px_0px_10px_rgba(216,214,242,1)] m-4 w-[15vw] lg:w-[5vw] h-auto"

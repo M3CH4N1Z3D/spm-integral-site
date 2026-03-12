@@ -42,7 +42,7 @@ export function useAboutData() {
       name: "Fredy M. Rigueros",
       title: "Mechanical Engineer / Full-Stack Developer",
       bio: "Fredy is a passionate full-stack developer with a background in mechanical engineering. He specializes in creating robust and scalable web applications.",
-      avatarUrl: "/fredy.png",
+      avatarUrl: "/fredy.webp",
       handle: "javicodes",
     },
   ]

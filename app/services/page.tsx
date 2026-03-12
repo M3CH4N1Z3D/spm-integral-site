@@ -44,22 +44,22 @@ export default function Services() {
               <div className="text-[#bccceb] mb-4 sm:mb-6 flex justify-center lg:justify-start">
                 {service.icon}
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#d8d6f2] mb-3 sm:mb-4 text-center lg:text-left">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#d8d6f2] mb-3 sm:mb-4 text-center lg:text-left">
                 <Link
                   href={`/services/${getServiceSlug(service.title)}`}
                   className="relative hover:cursor-pointer transition-colors font-medium after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-[#bccceb] after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
                   {service.title}
                 </Link>
-              </h3>
+              </h2>
               <p className="text-[#bccceb] mb-4 sm:mb-6 text-sm sm:text-base text-center lg:text-left">
                 {service.description}
               </p>
 
               <div className="space-y-2 mb-6">
-                <h4 className="text-base sm:text-lg font-semibold text-[#bccceb] mb-2 sm:mb-3 text-center lg:text-left">
+                <h3 className="text-base sm:text-lg font-semibold text-[#bccceb] mb-2 sm:mb-3 text-center lg:text-left">
                   {t("services.technologies")}
-                </h4>
+                </h3>
                 <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {service.features.map((feature, featureIndex) => (
                     <span
